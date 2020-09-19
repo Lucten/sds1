@@ -21,6 +21,11 @@ const Records = () => {
         setActivePage(index)
     }
 
+    recordsResponse?.content.forEach(item=>{
+        if (item.gamePlatform === 'XBX'){
+        item.gamePlatform = "XBOX";
+        }
+    });
     
     return (
         <div className="page-container">
@@ -38,12 +43,13 @@ const Records = () => {
                 </thead>
                 <tbody>
                     {recordsResponse?.content.map(record =>(
+                        
                         <tr key={record.id}>
                             <td>{formatDate(record.moment)}</td>
                             <td>{record.name}</td>
                             <td>{record.age}</td>
                             <td className="text-secondary">{record.gamePlatform}</td>
-                            <td>{record.genreName}</td>
+                            <td>({record.genreName})</td>
                             <td className="text-primary">{record.gameTitle}</td>
                         </tr>
                     ))}
